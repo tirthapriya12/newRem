@@ -1,0 +1,128 @@
+<html>
+<title>Kukrookoo Reminder</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js\jquery.min.js"></script>
+<script src="js\bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css\bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+    window.addEventListener('load', function () {
+        var i = 0;
+
+        function clickrespond(event) {
+            console.log(event.target);
+        };
+
+
+        function setListener(boxobj, evntname) {
+            if (i < boxobj.length) {
+                boxobj[i].addEventListener(evntname, clickrespond(event));
+                i++;
+                setListener(boxobj, 'click');
+            }
+        }
+
+
+
+        var boxobj = document.getElementsByClassName('box');
+        //console.log(boxobj);
+        setListener(boxobj, 'click');
+
+    });
+
+</script>
+<script>
+    $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: 'yy-mm-dd',
+            showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(),
+            maxDate: '+100Y',
+            inline: true
+        });
+    });
+
+</script>
+
+<body>
+
+    <header class="header jumbotron">
+        <h1>KukrooKoo <img src="images/logo.png"> Reminder </h1>
+
+    </header>
+
+    <section class="container-fluid body ">
+
+        <section class="col-md-6 col-sm-10 col-xs-10">
+
+            <section class="picker-body">
+                
+
+                    <div class="form-group">
+                        <label>Enter your Reminder</label>
+                        <textarea maxlength="300" placeholder="Remind me about....!" class="form-control" rows="5" id="rem-text" required></textarea>
+                    </div>
+
+
+                    <label>Enter Date </label>
+                    <input type="text" id="datepicker" size="30" required>
+
+
+                    <label>Enter Time </label>
+                    <input type="time" id='rem-time'  required>
+                    <button   id='addBtn' class="btn btn-success">Add</button>
+                    
+            </section>
+        </section>
+        <section class=" rem-list col-md-5 col-sm-10 col-xs-10">
+            <h3>Upcoming Reminders</h3>
+            <section class="reminder-list">
+                <ul id="myUL">
+                    
+                    
+                </ul>
+            </section>
+        </section>
+    </section>
+
+
+
+
+    <!--Reminder Modal-->
+    <div id="rem-modal" class="w3-modal">
+        <div class="w3-modal-content w3-card-8">
+            <header class="w3-container w3-teal">
+                <span  class="w3-button w3-display-topright">&times;</span>
+                <h3>Hey do you remember this !</h3>
+            </header>
+            <div class="w3-container">
+                <p>Reminder text..</p>
+                <p>Time text</p>
+            </div>
+            <footer class="w3-container w3-teal">
+                <p>Date text</p>
+            </footer>
+        </div>
+        
+            <audio>
+                    
+                     <source src="audio/rooster.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                </audio>
+        
+    </div>
+    
+</body>
+<script src='watcher.js'></script>
+<script src='reminder_obj.js'></script>
+<script src='reminder_list.js'></script>
+<script src='DBManager.js'></script>
+<script src='handle_UI.js'></script>
+</html>
