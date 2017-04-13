@@ -317,11 +317,7 @@ window.addEventListener('load', function () {
             min = (d.getMinutes()%12 < 10) ? ('0' + d.getMinutes() % 12) : d.getMinutes() % 12;
         var time = hours + ':' + min;
 
-        var arr = UIObj.timelist[i].Rem_time;
-        arr = arr.split(':');
-        var UITimehrs=(arr[0]%12 <10)? '0'+arr[0]%12 : arr[0]%12 ,
-        UITimemin=(arr[1]%12 <10)? '0'+arr[1]%12 : arr[0]%12;
-        var UITime=UITimehrs+':'+UITimemin;
+        
 
 
 
@@ -329,6 +325,13 @@ window.addEventListener('load', function () {
 
 
         for (i in UIObj.timelist) {
+
+            var arr = UIObj.timelist[i].Rem_time;
+        arr = arr.split(':');
+        var UITimehrs=(arr[0]%12 <10)? '0'+arr[0]%12 : arr[0]%12 ,
+        UITimemin=(arr[1]%12 <10)? '0'+arr[1]%12 : arr[0]%12;
+        var UITime=UITimehrs+':'+UITimemin;
+
 
             console.log(UIObj.timelist[i].Rem_time + "  " + UIObj.timelist[i].Rem_date);
             if (UIObj.timelist[i].Rem_date <= date) {
