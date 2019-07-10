@@ -313,37 +313,25 @@ window.addEventListener('load', function () {
             mm = ((d.getMonth() + 1) < 10) ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1),
             yyyy = d.getFullYear();
         var date = yyyy + '-' + mm + '-' + dd;
-        var hours = (d.getHours()%12 < 10) ? ('0' + d.getHours() % 12) : d.getHours() % 12,
-            min = (d.getMinutes() < 10) ? ('0' + d.getMinutes() ) : d.getMinutes();
+        var hours = (d.getHours() % 12 < 10) ? ('0' + d.getHours() % 12) : d.getHours() % 12,
+            min = (d.getMinutes() < 10) ? ('0' + d.getMinutes()) : d.getMinutes();
         var time = hours + ':' + min;
-
-        
-
-
-
-
 
 
         for (i in UIObj.timelist) {
 
             var arr = UIObj.timelist[i].Rem_time;
-        arr = arr.split(':');
-        var UITimehrs=(arr[0]%12 <10)? '0'+arr[0]%12 : arr[0]%12 ,
-        UITimemin=(arr[1] <10)? '0'+arr[1]: arr[0];
-        var UITime=UITimehrs+':'+UITimemin;
-
+            arr = arr.split(':');
+            // var UITimehrs = (arr[0] % 12 < 10) ? '0' + arr[0] % 12 : arr[0] % 12,
+            //     UITimemin = (arr[1] < 10) ? '0' + arr[1] : arr[0];
+            // var UITime = UITimehrs + ':' + UITimemin;
 
             console.log(UIObj.timelist[i].Rem_time + "  " + UIObj.timelist[i].Rem_date);
-            if (UIObj.timelist[i].Rem_date <= date) {
 
-                if (UITime <= time) {
-                    UIObj.lilist[i].style['text-decoration'] = 'line-through';
-                }
+            if (new Date(UIObj.timelist[i].Rem_date + ' ' + UIObj.timelist[i].Rem_time) <= new Date()) {
+                UIObj.lilist[i].style['text-decoration'] = 'line-through';
 
             }
-
-
-
         }
 
 
